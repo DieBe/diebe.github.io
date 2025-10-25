@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Gutschein — Eine Entführung</title>
+<style>
+/* Atmosphäre: bedrohlich, geheimnisvoll, minimalistisch */
+:root{
+  --bg-1:#030407;
+  --bg-2:#08090e;
+  --accent:#7b0f2f;
+  --muted:rgba(255,255,255,0.7);
+  font-family:"Cormorant Garamond","Playfair Display",serif;
+}
+
+html,body{
+  height:100%;margin:0;overflow:hidden;
+  background:radial-gradient(ellipse at center,var(--bg-2) 0%,var(--bg-1) 100%);
+  color:#f2f2f2;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* Hintergrundbewegung */
+.scene{
+  position:relative;width:100%;height:100vh;overflow:hidden;
+}
+.stars{
+  position:absolute;width:100%;height:100%;
+  background-image:
+    radial-gradient(white 1px,transparent 1px),
+    radial-gradient(white 1px,transparent 1px);
+  background-size:200px 200px;
+  background-position:0 0,100px 100px;
+  opacity:0.15;
+  animation: drift 80s linear infinite;
+}
+@keyframes drift{
+  from{background-position:0 0,100px 100px;}
+  to{background-position:1000px 500px,1100px 600px;}
+}
+.fog{
+  position:absolute;width:200%;height:200%;top:-50%;left:-50%;
+  background:radial-gradient(circle at 50% 50%,rgba(255,255,255,0.04) 0%,transparent 70%);
+  filter:blur(80px);
+  animation:fogmove 120s linear infinite;
+  opacity:0.25;
+}
+@keyframes fogmove{
+  0%{transform:translate(0,0) rotate(0deg);}
+  50%{transform:translate(10%,-10%) rotate(90deg);}
+  100%{transform:translate(0,0) rotate(180deg);}
+}
+.redglow{
+  position:absolute;width:700px;height:700px;top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  background:radial-gradient(circle,rgba(120,20,40,0.18) 0%,transparent 70%);
+  animation:pulse 12s ease-in-out infinite alternate;
+}
+@keyframes pulse{
+  from{transform:translate(-50%,-50%) scale(0.7);opacity:0.5;}
+  to{transform:translate(-50%,-50%) scale(1.2);opacity:0.9;}
+}
+
+/* Text */
+.text{
+  position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  text-align:center;
+  animation:appear 5s ease-out forwards;
+  opacity:0;
+}
+@keyframes appear{
+  0%{opacity:0;transform:translate(-50%,-60%) scale(0.9);}
+  100%{opacity:1;transform:translate(-50%,-50%) scale(1);}
+}
+.text h1{
+  font-size:3.6em;
+  letter-spacing:0.06em;
+  margin:0;
+  background:linear-gradient(90deg,#c9b3b3,#fff);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.text p{
+  font-size:1.4em;
+  color:rgba(255,255,255,0.65);
+  letter-spacing:0.12em;
+  margin-top:0.6em;
+  animation:fadein 10s ease-in forwards;
+}
+@keyframes fadein{
+  0%{opacity:0;}
+  100%{opacity:1;}
+}
+.tail{
+  font-size:1em;
+  letter-spacing:0.12em;
+  color:rgba(255,230,230,0.8);
+  margin-top:1.2em;
+  opacity:0;
+  animation:tailin 12s ease-out forwards;
+}
+@keyframes tailin{
+  0%{opacity:0;transform:translateY(10px);}
+  70%{opacity:0;}
+  100%{opacity:1;transform:translateY(0);}
+}
+.vignette{
+  position:absolute;inset:0;
+  background:radial-gradient(circle at center,transparent 60%,rgba(0,0,0,0.9) 100%);
+  pointer-events:none;
+}
+</style>
+</head>
+<body>
+<div class="scene">
+  <div class="stars"></div>
+  <div class="fog"></div>
+  <div class="redglow"></div>
+  <div class="text">
+    <h1>Gutschein</h1>
+    <p>für eine Entführung</p>
+    <div class="tail">wenn au immer</div>
+  </div>
+  <div class="vignette"></div>
+</div>
+</body>
+</html>
